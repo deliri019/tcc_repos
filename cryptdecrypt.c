@@ -1,3 +1,5 @@
+#include <openssl.h>
+
 char *crypt(chrar *, char *key);
 char *decrypt(chrar *, char *key);
 
