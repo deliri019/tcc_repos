@@ -1,4 +1,4 @@
-#include <openssl.h>
+#include <openssl/aes.h>
 
 char *crypt(chrar *, char *key);
 char *decrypt(chrar *, char *key);
