@@ -1,9 +1,0 @@
-Ayuda para WAITING:
-
-WAIING muestra todos los anuncios esperando ser activados
-actualmente.
-
-Sintaxis: WAITING
-
-Ejemplos:
-    /msg &nick& WAITING

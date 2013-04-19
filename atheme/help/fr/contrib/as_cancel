@@ -1,8 +1,0 @@
-Aide pour CANCEL:
-
-CANCEL annule une demande d'annonce.
-
-Syntaxe : CANCEL
-
-Exemples :
-    /msg &nick& CANCEL

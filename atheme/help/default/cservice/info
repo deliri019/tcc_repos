@@ -1,9 +1,0 @@
-Help for INFO:
-
-INFO displays channel information such as
-registration time, flags, and other details.
-
-Syntax: INFO <#channel>
-
-Examples:
-    /msg &nick& INFO #foo

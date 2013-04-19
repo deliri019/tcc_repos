@@ -1,8 +1,0 @@
-Ayuda para BOTLIST:
-
-Muestra una lista de bots disponibles en la red.
-
-Sintaxis: BOTLIST
-
-Ejemplos:
-    /msg &nick& BOTLIST

@@ -1,8 +1,0 @@
-Ayuda para PINGSPAM:
-
-PINGSPAM ataca a un usuario con pings de cada servicio, y otros avisos.
-
-Sintaxis: PINGSPAM <objeto>
-
-Ejemplos:
-    /msg &nick& PINGSPAM abc-persona

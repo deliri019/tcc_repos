@@ -1,6 +1,0 @@
-Aide pour FENFORCE:
-
-FENFORCE permet aux opérateurs d'activer/désactiver
-l'enforcer d'un pseudo sur n'importe quel compte.
-
-Syntaxe : FENFORCE <compte> ON|OFF

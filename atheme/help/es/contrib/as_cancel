@@ -1,8 +1,0 @@
-Ayuda para CANCEL:
-
-Cancela un anuncio pendiente.
-
-Sintaxis: CANCEL
-
-Ejemplos:
-    /msg &nick& CANCEL

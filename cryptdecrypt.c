@@ -1,6 +1,9 @@
 #include <openssl/aes.h>
+#include <stdio.h>
+
 
 char *crypt(chrar *, char *key);
+
 char *decrypt(chrar *, char *key);
 
 main() {

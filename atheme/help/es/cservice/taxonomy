@@ -1,7 +1,0 @@
-Ayuda para TAXONOMY:
-
-El comando TAXONOMY muestra información de metadatos
-asociados con canales registrados.
-
-Ejemplos:
-    /msg &nick& TAXONOMY #atheme

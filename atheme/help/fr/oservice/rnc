@@ -1,8 +1,0 @@
-Aide pour RNC:
-
-RNC affiche les realname les plus répandus du réseau.
-
-Syntaxe : RNC [nombre]
-
-Exemple :
-    /msg &nick& RNC 10

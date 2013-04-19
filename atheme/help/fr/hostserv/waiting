@@ -1,8 +1,0 @@
-Aide pour WAITING:
-
-WAITING liste tous les vHost actuellement en cours d'activation.
-
-Syntaxe : WAITING
-
-Exemples :
-    /msg &nick& WAITING
