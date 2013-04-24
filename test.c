@@ -14,14 +14,14 @@ int main()
     unsigned char * enc_out = malloc(80*sizeof(char)); 
     unsigned char * dec_out = malloc(80*sizeof(char));
 
-    AES_KEY enc_key, dec_key;
+    AES_KEY aeskey;
 
-    AES_set_encrypt_key(key, 128, &enc_key);
-    AES_encrypt(text, enc_out, &enc_key);  
+    AES_set_encrypt_key(key, 128, &aeskey);
+    AES_encrypt(text, enc_out, &aeskey);  
 
 
-    AES_set_decrypt_key(key,128,&dec_key);
-    AES_decrypt(enc_out, dec_out, &dec_key);
+    AES_set_decrypt_key(key,128,&aeskey);
+    AES_decrypt(enc_out, dec_out, &aeskey);
 
     int i;
 

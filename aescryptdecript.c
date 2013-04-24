@@ -13,34 +13,30 @@ static const unsigned char key[] = {
 
 int main()
 {
-    unsigned char text[]="Virident";
+    unsigned char text[]="hellow world!";
     unsigned char * enc_text = malloc(80*sizeof(char)); 
     unsigned char * dec_text = malloc(80*sizeof(char));
 
-    AES_KEY key_in, key_out;
+    AES_KEY aeskey;
     
-    AES_set_encrypt_key(key, 256, &key_in);
-    AES_encrypt(text, enc_text, &key_in);
+    AES_set_encrypt_key(key, 256, &aeskey);
+    AES_encrypt(text, enc_text, &aeskey);
     
-    AES_set_decrypt_key(key, 256, &key_out); 
-    AES_decrypt(enc_text, dec_text, &key_out);
+    AES_set_decrypt_key(key, 256, &aeskey); 
+    AES_decrypt(enc_text, dec_text, &aeskey);
 
     int x;
 
-    printf("Original message: (hex): \t");
-    for (x=0;*(text+x)!=0x00; x++){
+    printf("Original Message: (hex):\t");
+    for (x=0;*(text+x)!=0x00; x++)
    	 printf("%X ",*(text+x));
-    }
-    printf("\n");
-    printf("Encrypted message (hex): \t");
-    for (x=0;*(enc_text+x)!=0x00; x++){
-    	printf("%X "),*(enc_text+x);
-    }
-    printf("\n");
-    printf("Decrypted message (hex): \t");
-    for (x=0;*(dec_text+x)!=0x00; x++){
-    	printf("%X "),*(dec_text+x);
-    }
+    printf("\nEncrypted Message (hex):\t");
+    for (x=0;*(enc_text+x)!=0x00; x++)
+    	printf("%X ",*(enc_text+x));
+   
+    printf("\nDecrypted Message (hex):\t");
+    for (x=0;*(dec_text+x)!=0x00; x++)
+    	printf("%X ",*(dec_text+x));
     printf("\n");
     free(enc_text);
     free(dec_text);
