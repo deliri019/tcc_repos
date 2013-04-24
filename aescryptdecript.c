@@ -13,9 +13,12 @@ static const unsigned char key[] = {
 
 int main()
 {
-    unsigned char text[]="hellow world!";
+    char text[100];
     unsigned char * enc_text = malloc(80*sizeof(char)); 
     unsigned char * dec_text = malloc(80*sizeof(char));
+
+    printf("Insert the message you wish to encrypt:\t");
+    scanf("%s", &text);
 
     AES_KEY aeskey;
     
@@ -26,14 +29,14 @@ int main()
     AES_decrypt(enc_text, dec_text, &aeskey);
 
     int x;
-
-    printf("Original Message: (hex):\t");
+    printf("Original Message (string):\t");
+        printf("%s",text);
+    printf("\nOriginal Message: (hex):\t");
     for (x=0;*(text+x)!=0x00; x++)
-   	 printf("%X ",*(text+x));
+   	printf("%X ",*(text+x));
     printf("\nEncrypted Message (hex):\t");
     for (x=0;*(enc_text+x)!=0x00; x++)
-    	printf("%X ",*(enc_text+x));
-   
+    	printf("%X ",*(enc_text+x));   
     printf("\nDecrypted Message (hex):\t");
     for (x=0;*(dec_text+x)!=0x00; x++)
     	printf("%X ",*(dec_text+x));
