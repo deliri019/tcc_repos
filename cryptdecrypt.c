@@ -1,15 +1,16 @@
 #include <openssl/aes.h>
 #include <stdio.h>
 
-
-char *crypt(chrar *, char *key);
-
-char *decrypt(chrar *, char *key);
+char *crypt(char *mensagem){
+	int x;
+	for (x=0; x < 3; x++){
+		printf("%c", mensagem[x]);
+	}
+}
 
 main() {
-  crypted = crypt("hooray", "BC45A23");
-  //send(crypted, 192.168.6.69);
-  //system("nc 1234");
-
-  printf("decrypted = %s\n", decrypt(crypted, "BC45A23");
+	char mensagem[3];
+	printf("Digite a mensagem que sera criptografada:\n");
+	scanf("%s", mensagem);
+	crypt(mensagem);
 }
