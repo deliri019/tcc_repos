@@ -33,7 +33,7 @@ int main()
 	int x;
 	printf("Original Message (string):\t");
 	printf("%s",text);
-	printf("\nOriginal Message: (hex):\t");
+	printf("\nOriginal Message (hex):\t");
 
 	for (x=0;*(text+x)!=0x00; x++)
 		printf("%X ",*(text+x));
