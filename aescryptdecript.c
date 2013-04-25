@@ -1,6 +1,8 @@
 #include <stdio.h> 
 #include <stdlib.h>
 #include <openssl/aes.h>   
+#include <string.h>
+#include <readline/readline.h>
 
 static const unsigned char key[] = {
     0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77,
@@ -13,12 +15,11 @@ static const unsigned char key[] = {
 
 int main()
 {
-    char text[100];
+    char *text;
     unsigned char * enc_text = malloc(80*sizeof(char)); 
     unsigned char * dec_text = malloc(80*sizeof(char));
 
-    printf("Insert the message you wish to encrypt:\t");
-    scanf("%s", &text);
+    text = readline("Insert the message you wish to encrypt:\t");
 
     AES_KEY aeskey;
     
