@@ -13,13 +13,13 @@ static const unsigned char key[] = {
 int main()
 {
 	char *text;
-	unsigned char *enc_text = malloc(80 * sizeof(char));
-	unsigned char *dec_text = malloc(80 * sizeof(char));
+	unsigned char *enc_text = malloc(800 * sizeof(char));
+	unsigned char *dec_text = malloc(800 * sizeof(char));
 
 	text = readline("Insert the message you wish to encrypt:\t");
 
 	if (!text) {
-		printf("Erro");
+		printf("Error");
 	}
 
     AES_KEY aeskey;
@@ -31,20 +31,21 @@ int main()
 	AES_decrypt(enc_text, dec_text, &aeskey);
 
 	int x;
+
 	printf("Original Message (string):\t");
-	printf("%s",text);
-	printf("\nOriginal Message (hex):\t");
+	printf("%s ",text);
 
+	printf("\nOriginal Message (hexa):\t");
 	for (x=0;*(text+x)!=0x00; x++)
-		printf("%X ",*(text+x));
+		printf("%2.X ",*(text+x));
 
-	printf("\nEncrypted Message (hex):\t");
-	for (x=0;*(enc_text+x)!=0x00; x++)
-		printf("%X ",*(enc_text+x));   
+	printf("\nEncrypted Message (hexa):\t");
+	for (x = 0; *(enc_text+x) != 0x00; x++)
+		printf("%2.X ",*(enc_text+x));
 
-	printf("\nDecrypted Message (hex):\t");
+	printf("\nDecrypted Message (hexa):\t");
 	for (x=0;*(dec_text+x)!=0x00; x++)
-		printf("%X ",*(dec_text+x));
+		printf("%2.X ",*(dec_text+x));
 
 	printf("\n");
 
