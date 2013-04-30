@@ -13,6 +13,7 @@ static const unsigned char key[] = {
 int main()
 {
 	char *text;
+	int textlen, x;
 	unsigned char *enc_text = malloc(800 * sizeof(char));
 	unsigned char *dec_text = malloc(800 * sizeof(char));
 
@@ -22,6 +23,9 @@ int main()
 		printf("Error");
 	}
 
+	textlen = strlen(text);
+	printf("####### Tamanho do texto: %d #######\n", textlen);
+
     AES_KEY aeskey;
 
 	AES_set_encrypt_key(key, 256, &aeskey);
@@ -30,7 +34,16 @@ int main()
 	AES_set_decrypt_key(key, 256, &aeskey);
 	AES_decrypt(enc_text, dec_text, &aeskey);
 
-	int x;
+/*
+Começa loop pra cifrar dados;
+*/
+for (x=0; x<textlen; x++){
+
+}
+
+/*
+Termina fluxo de cifra de dados;
+*/
 
 	printf("Original Message (string):\t");
 	printf("%s ",text);
