@@ -13,65 +13,68 @@ static const unsigned char key[] = {
 int main()
 {
 	char *text;
-	char *msg_cifrada;
+	unsigned char *msg_cifrada = malloc(800 * sizeof(char));
 	int textlen, x;
 	unsigned char *enc_text = malloc(800 * sizeof(char));
 	unsigned char *dec_text = malloc(800 * sizeof(char));
 
-text = readline("Insert the message you wish to encrypt:\t");
+	text = readline("Insert the message you wish to encrypt:\t");
 
-if (!text) {
-printf("Error");
-}
+	if (!text) {
+		printf("Error");
+	}
 
 	textlen = strlen(text);
 	printf("####### Tamanho do texto: %d #######\n", textlen);
 
     AES_KEY aeskey;
 
-AES_set_encrypt_key(key, 256, &aeskey);
-AES_encrypt(text, enc_text, &aeskey);
+	AES_set_encrypt_key(key, 256, &aeskey);
+	AES_encrypt(text, enc_text, &aeskey);
 
-AES_set_decrypt_key(key, 256, &aeskey);
-AES_decrypt(enc_text, dec_text, &aeskey);
+	AES_set_decrypt_key(key, 256, &aeskey);
+	AES_decrypt(enc_text, dec_text, &aeskey);
 
 /*
  * * Start loop to encrypt
  */
-        for (x = 0; *(text+x)!= 0x00; x+=16)
-                AES_encrypt(*(text[x]),*(enc_text[x]), &aeskey);
-                memcpy(*(msg_cifrada[x]), *(enc_text[x]), 16/*strlen(enc_text)*/);
+	for (x = 0; x < textlen; x+=16){
+		AES_encrypt(text+x, enc_text, &aeskey);
+		memcpy(&msg_cifrada[x], enc_text, 16);
+	}
 
-        printf("\nEncrypted Message[FULL]:\t");
-        for (x=0; *; x++)
-                printf("%2.X ", &msg_cifrada[x]);
+	printf("\nEncrypted Message [FULL]:\t");
+	for (x=0; x < textlen; x++)
+		printf("%2.X ", msg_cifrada[x]);
 /*
  * * Finish loop to encrypt
  */
 
-printf("Original Message (string):\t");
-printf("%s ",text);
+	printf("\nOriginal Message (string):\t");
+	printf("%s ",text);
 
-printf("\nOriginal Message (hexa):\t");
-for (x=0;*(text+x)!=0x00; x++)
-printf("%2.X ",*(text+x));
+	printf("\nOriginal Message (hexa):\t");
+	for (x=0;*(text+x)!=0x00; x++)
+		printf("%2.X ",*(text+x));
 
-printf("\nEncrypted Message (hexa):\t");
-for (x = 0; *(enc_text+x) != 0x00; x++)
-printf("%2.X ",*(enc_text+x));
+	printf("\nEncrypted Message (hexa):\t");
+	for (x = 0; *(enc_text+x) != 0x00; x++)
+		printf("%2.X ",*(enc_text+x));
 
-printf("\nDecrypted Message (hexa):\t");
-for (x=0;*(dec_text+x)!=0x00; x++)
-printf("%2.X ",*(dec_text+x));
+	printf("\nDecrypted Message (hexa):\t");
+	for (x=0;*(dec_text+x)!=0x00; x++)
+		printf("%2.X ",*(dec_text+x));
 
-printf("\n");
+	printf("\n");
 
-if (dec_text != NULL)
-free(dec_text);
-if (enc_text != NULL)
-free(enc_text);
-if (text != NULL)
-free(text);
+	if (dec_text != NULL)
+		free(dec_text);
+	if (enc_text != NULL)
+		free(enc_text);
+	if (text != NULL)
+		free(text);
+	if (msg_cifrada != NULL)
+		free(msg_cifrada);
 
-return 0;
+	return 0;
 }
