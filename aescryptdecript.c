@@ -13,6 +13,7 @@ static const unsigned char key[] = {
 int main()
 {
 	char *text;
+	char *msg_cifrada;
 	int textlen, x;
 	unsigned char *enc_text = malloc(800 * sizeof(char));
 	unsigned char *dec_text = malloc(800 * sizeof(char));
@@ -35,15 +36,18 @@ int main()
 	AES_decrypt(enc_text, dec_text, &aeskey);
 
 /*
-Começa loop pra cifrar dados;
-*/
-for (x=0; x<textlen; x++){
+ * * Start loop to encrypt
+ */
+        for (x = 0; *(text+x)!= 0x00; x+=16)
+                AES_encrypt(*(text[x]),*(enc_text[x]), &aeskey);
+                memcpy(*(msg_cifrada[x]), *(enc_text[x]), 16/*strlen(enc_text)*/);
 
-}
-
+        printf("\nEncrypted Message[FULL]:\t");
+        for (x=0; *; x++)
+                printf("%2.X ", &msg_cifrada[x]);
 /*
-Termina fluxo de cifra de dados;
-*/
+ * * Finish loop to encrypt
+ */
 
 	printf("Original Message (string):\t");
 	printf("%s ",text);
