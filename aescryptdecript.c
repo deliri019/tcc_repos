@@ -12,15 +12,20 @@ static const unsigned char key[] = {
 
 int main()
 {
-char *text;
-unsigned char *enc_text = malloc(800 * sizeof(char));
-unsigned char *dec_text = malloc(800 * sizeof(char));
+	char *text;
+	char *msg_cifrada;
+	int textlen, x;
+	unsigned char *enc_text = malloc(800 * sizeof(char));
+	unsigned char *dec_text = malloc(800 * sizeof(char));
 
 text = readline("Insert the message you wish to encrypt:\t");
 
 if (!text) {
 printf("Error");
 }
+
+	textlen = strlen(text);
+	printf("####### Tamanho do texto: %d #######\n", textlen);
 
     AES_KEY aeskey;
 
@@ -30,7 +35,19 @@ AES_encrypt(text, enc_text, &aeskey);
 AES_set_decrypt_key(key, 256, &aeskey);
 AES_decrypt(enc_text, dec_text, &aeskey);
 
-int x;
+/*
+ * * Start loop to encrypt
+ */
+        for (x = 0; *(text+x)!= 0x00; x+=16)
+                AES_encrypt(*(text[x]),*(enc_text[x]), &aeskey);
+                memcpy(*(msg_cifrada[x]), *(enc_text[x]), 16/*strlen(enc_text)*/);
+
+        printf("\nEncrypted Message[FULL]:\t");
+        for (x=0; *; x++)
+                printf("%2.X ", &msg_cifrada[x]);
+/*
+ * * Finish loop to encrypt
+ */
 
 printf("Original Message (string):\t");
 printf("%s ",text);
