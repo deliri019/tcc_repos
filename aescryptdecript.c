@@ -16,7 +16,7 @@ int main()
 	unsigned char *msg_cifrada = malloc(800 * sizeof(char));
 	unsigned char *msg_decifrada = malloc(800 * sizeof(char));
 
-	int textlen, x;
+	int textlen, x, tmp;
 	unsigned char *enc_text = malloc(800 * sizeof(char));
 	unsigned char *dec_text = malloc(800 * sizeof(char));
 
@@ -32,13 +32,13 @@ int main()
     AES_KEY aeskey;
 
 	AES_set_encrypt_key(key, 256, &aeskey);
-	AES_encrypt(text, enc_text, &aeskey);
+//	AES_encrypt(text, enc_text, &aeskey);
 
 	AES_set_decrypt_key(key, 256, &aeskey);
 	AES_decrypt(enc_text, dec_text, &aeskey);
 
 /*
- * * Start loop to encrypt
+ * * Start loop to encrypt/decrypt
  */
 	printf("\nOriginal Message (string) FULL:\t");
 	printf("%s ",text);
@@ -47,16 +47,36 @@ int main()
 	for (x=0;*(text+x)!=0x00; x++)
 		printf("%2.X ",*(text+x));
 
-	for (x = 0; x < textlen; x+=16){
-		AES_encrypt(text+x, enc_text, &aeskey);
-		memcpy(&msg_cifrada[x], enc_text, 16);
+	//Loop to encrypt 16 to 16 bytes
+	tmp = textlen;
+	for (x = 0; x < textlen; x+=16) {
+		if (tmp >= 16) {
+			AES_encrypt(text+x, enc_text, &aeskey);
+			memcpy(&msg_cifrada[x], enc_text, 16);
+			tmp-=16;
+			printf("####%d####", tmp);
+		} else if (tmp < 16 && tmp >= 0) {
+			AES_encrypt(text+x, enc_text, &aeskey);
+			memcpy(&msg_cifrada[x], enc_text, tmp);
+			printf("####%d####", tmp);
+			tmp=0;
+		}
 	}
-
 	printf("\nEncrypted Message (hexa) FULL:\t");
 	for (x=0; x < textlen; x++)
 		printf("%2.X ",msg_cifrada[x]);
+
+	//Loop to decrypt 16 to 16 bytes
+//	for (x=0; x<textlen; x+=16){
+//		AES_decrypt(msg_cifrada+x, dec_text, &aeskey);
+//		memcpy(&msg_decifrada[x], dec_text, 16);
+//	}
+
+	printf("\nDecrypted Message (hexa) FULL:\t");
+	for (x=0; x < textlen; x++)
+		printf("%2.X ",msg_decifrada[x]);
 /*
- * * Finish loop to encrypt
+ * * Finish loop to encrypt/decrypt
  */
 
 	printf("%s ", "\n\nA PARTIR DAQUI TA WORKANDO\n");
@@ -86,6 +106,8 @@ int main()
 		free(text);
 	if (msg_cifrada != NULL)
 		free(msg_cifrada);
+	if (msg_decifrada != NULL)
+		free(msg_decifrada);
 
 	return 0;
 }
