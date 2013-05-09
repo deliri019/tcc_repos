@@ -14,6 +14,8 @@ int main()
 {
 	char *text;
 	unsigned char *msg_cifrada = malloc(800 * sizeof(char));
+	unsigned char *msg_decifrada = malloc(800 * sizeof(char));
+
 	int textlen, x;
 	unsigned char *enc_text = malloc(800 * sizeof(char));
 	unsigned char *dec_text = malloc(800 * sizeof(char));
@@ -25,7 +27,7 @@ int main()
 	}
 
 	textlen = strlen(text);
-	printf("####### Tamanho do texto: %d #######\n", textlen);
+	printf("\n####### Tamanho do texto: %d #######\n", textlen);
 
     AES_KEY aeskey;
 
@@ -38,17 +40,26 @@ int main()
 /*
  * * Start loop to encrypt
  */
+	printf("\nOriginal Message (string) FULL:\t");
+	printf("%s ",text);
+
+	printf("\nOriginal Message (hexa) FULL:\t");
+	for (x=0;*(text+x)!=0x00; x++)
+		printf("%2.X ",*(text+x));
+
 	for (x = 0; x < textlen; x+=16){
 		AES_encrypt(text+x, enc_text, &aeskey);
 		memcpy(&msg_cifrada[x], enc_text, 16);
 	}
 
-	printf("\nEncrypted Message [FULL]:\t");
+	printf("\nEncrypted Message (hexa) FULL:\t");
 	for (x=0; x < textlen; x++)
-		printf("%2.X ", msg_cifrada[x]);
+		printf("%2.X ",msg_cifrada[x]);
 /*
  * * Finish loop to encrypt
  */
+
+	printf("%s ", "\n\nA PARTIR DAQUI TA WORKANDO\n");
 
 	printf("\nOriginal Message (string):\t");
 	printf("%s ",text);
