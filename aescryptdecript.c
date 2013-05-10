@@ -27,6 +27,7 @@ int main()
 	}
 
 	textlen = strlen(text);
+
 	printf("\n####### Tamanho do texto: %d #######\n", textlen);
 
     AES_KEY aeskey;
@@ -48,29 +49,52 @@ int main()
 		printf("%2.X ",*(text+x));
 
 	//Loop to encrypt 16 to 16 bytes
-	tmp = textlen;
-	for (x = 0; x < textlen; x+=16) {
-		if (tmp >= 16) {
+	x=0;
+	tmp=textlen;
+   /*do {
+		if (tmp < 16 && tmp > 0) {
+			AES_encrypt(text+x, enc_text, &aeskey);
+	        memcpy(&msg_cifrada[x], enc_text, tmp);
+			tmp--;
+			x++;
+			printf("\n####Entrei no loop final#####\t");
+			printf("\n#MsgCifrada###%2.X####\t",msg_cifrada[x]);
+			printf("\n###valor de x = %d###\n", x);
+		} else if (tmp >= 16) {
 			AES_encrypt(text+x, enc_text, &aeskey);
 			memcpy(&msg_cifrada[x], enc_text, 16);
 			tmp-=16;
-			printf("####%d####", tmp);
-		} else if (tmp < 16 && tmp >= 0) {
-			AES_encrypt(text+x, enc_text, &aeskey);
-			memcpy(&msg_cifrada[x], enc_text, tmp);
-			printf("####%d####", tmp);
-			tmp=0;
+			x++;
+			printf("\n####Entrei 1 vez no loop de 16####\t");
+			printf("\n#MsgCifrada###%2.X####\t",msg_cifrada[x]);
+			printf("\n###valor de x = %d###\n", x);
 		}
-	}
+	} while (tmp > 0);*/
+    do {
+			AES_encrypt(text+x, enc_text+x, &aeskey);
+	        memcpy(&msg_cifrada[x], enc_text+x, tmp);
+			tmp--;
+			x++;
+	} while (tmp > 0);
+
 	printf("\nEncrypted Message (hexa) FULL:\t");
+
 	for (x=0; x < textlen; x++)
-		printf("%2.X ",msg_cifrada[x]);
+	printf("%2.X ",msg_cifrada[x]);
 
 	//Loop to decrypt 16 to 16 bytes
-//	for (x=0; x<textlen; x+=16){
-//		AES_decrypt(msg_cifrada+x, dec_text, &aeskey);
-//		memcpy(&msg_decifrada[x], dec_text, 16);
-//	}
+	x=0;
+	tmp=textlen;
+ 	do {
+		AES_decrypt(msg_cifrada+x, dec_text+x, &aeskey);
+		memcpy(&msg_decifrada[x], dec_text+x, tmp);
+
+		printf("\nMSGCIFRADA = ###%2.X###\t", *msg_cifrada+x);
+		printf("\n##DEC_TEXT = ###%2.X\t", *dec_text);
+
+		tmp--;
+		x++;
+	} while (tmp > 0);
 
 	printf("\nDecrypted Message (hexa) FULL:\t");
 	for (x=0; x < textlen; x++)
