@@ -39,7 +39,6 @@ char *crypt_buff(unsigned char *buffer) {
 	for (x = 0; x < cbuff_len; x += 16) {
 		AES_encrypt(buffer + x, cbuff + x, &aeskey);
 	}
-
 	return cbuff;
 }
 
