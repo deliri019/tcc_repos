@@ -13,8 +13,8 @@ static const unsigned char key[] = {
 AES_KEY aeskey;
 
 void print_hex(unsigned char *buffer) {
-	for (;*buffer != 0x00; buffer++)
-		printf("%2.X ",*buffer);
+	for (; *buffer != 0x00; buffer++)
+		printf("%2.X ", *buffer);
 	printf("\n");
 }
 
@@ -32,11 +32,12 @@ char *crypt_buff(unsigned char *buffer) {
 
 	cbuff = NULL;
 	cbuff = malloc(cbuff_len);
+	printf("len: %d\n", cbuff_len);
 
 	memset(cbuff, 0, cbuff_len);
 
 	for (x = 0; x < cbuff_len; x += 16) {
-		AES_encrypt(buffer, cbuff, &aeskey);
+		AES_encrypt(buffer + x, cbuff + x, &aeskey);
 	}
 
 	return cbuff;
