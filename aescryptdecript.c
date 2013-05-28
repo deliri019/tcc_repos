@@ -18,18 +18,20 @@ void print_hex(unsigned char *buffer) {
 	printf("\n");
 }
 
-char *crypt_buff(unsigned char *buffer) {
+char *crypt_buff(unsigned char *buffer, const unsigned char *key) {
 	int len;
 	int cbuff_len;
 	int x;
 	unsigned char *cbuff;
 
+	AES_set_encrypt_key(key, 256, &aeskey);
 	len = strlen(buffer);
 
-	cbuff_len = len / 16;
-	cbuff_len = (float)cbuff_len < ((float)len / 16) ? cbuff_len + 1 : cbuff_len;
-	cbuff_len *= 16;
+//	cbuff_len = len / 16;
+//	cbuff_len = (float)cbuff_len < ((float)len / 16) ? cbuff_len + 1 : cbuff_len;
+//	cbuff_len *= 16;
 
+	cbuff_len = 800;
 	cbuff = NULL;
 	cbuff = malloc(cbuff_len);
 	printf("len: %d\n", cbuff_len);
@@ -42,11 +44,12 @@ char *crypt_buff(unsigned char *buffer) {
 	return cbuff;
 }
 
-char *decrypt_buff(unsigned char *buffer) {
+char *decrypt_buff(unsigned char *buffer, const unsigned char *key) {
 	int dbuff_len;
 	int x;
 	unsigned char *dbuff;
 
+	AES_set_decrypt_key(key, 256, &aeskey);
 	dbuff_len = strlen(buffer);
 
 	dbuff = malloc(dbuff_len);
@@ -54,7 +57,7 @@ char *decrypt_buff(unsigned char *buffer) {
 	memset(dbuff, 0, dbuff_len);
 
 	for (x = 0; x < dbuff_len; x += 16) {
-		AES_decrypt(buffer, dbuff, &aeskey);
+		AES_decrypt(buffer + x, dbuff + x, &aeskey);
 	}
 
 	return dbuff;
@@ -79,11 +82,8 @@ int main()
 	printf("\n####### Tamanho do texto: %d #######\n", textlen);
 
 
-	AES_set_encrypt_key(key, 256, &aeskey);
-	AES_set_decrypt_key(key, 256, &aeskey);
-
-	msg_cifrada = crypt_buff(text);
-	msg_decifrada = decrypt_buff(msg_cifrada);
+	msg_cifrada = crypt_buff(text, key);
+	msg_decifrada = decrypt_buff(msg_cifrada, key);
 
 
 	printf("\nOriginal Message (string):\t");
