@@ -6,3 +6,6 @@ all:
 
 test:
 	gcc test.c -o test -g ${LDFLAGS}
+
+evp:
+	gcc openssl_aes.c -o openssl_aes -g ${OPENSSLLIB_FLAGS}

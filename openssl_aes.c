@@ -96,9 +96,7 @@ int main(int argc, char **argv)
   unsigned int salt[] = {12345, 54321};
   unsigned char *key_data;
   int key_data_len, i;
-  char *input[] = {"a", "abcd", "this is a test", "this is a bigger test",
-                   "\nWho are you ?\nI am the 'Doctor'.\n'Doctor' who ?\nPrecisely!",
-                   NULL};
+  char *input[] = {"Essa e uma mensagem de teste!!",NULL};
 
   /* the key_data is read from the argument list */
   key_data = (unsigned char *)argv[1];
