@@ -96,7 +96,7 @@ int main(int argc, char **argv)
   unsigned int salt[] = {12345, 54321};
   unsigned char *key_data;
   int key_data_len, i;
-  char *input[] = {"Essa e uma mensagem de teste!!",NULL};
+  char *input[] = {"Esse e o bloco que sera criptografado com o AES!",NULL};
 
   /* the key_data is read from the argument list */
   key_data = (unsigned char *)argv[1];
