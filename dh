@@ -1,0 +1,17 @@
+    PKCS#3 DH Parameters: (1024 bit)
+        prime:
+            00:95:6b:6b:7c:e6:01:99:e0:22:b3:4d:08:59:59:
+            c2:a0:57:ec:fa:9e:71:13:a2:67:08:50:64:6e:ad:
+            f9:e7:e8:e5:04:f0:52:b8:01:c4:fe:0b:19:8c:03:
+            1e:f7:08:77:9f:69:f2:d5:46:3c:99:c1:04:c7:b0:
+            e0:2b:ca:b9:fb:c9:94:df:37:8f:23:5a:ec:8b:5f:
+            8f:14:e3:b8:8c:af:8a:16:48:82:60:2d:5c:58:ef:
+            aa:a4:ab:38:90:07:4e:64:d8:f4:cb:ce:ed:98:8a:
+            d1:31:ec:bf:ed:8b:d8:d4:af:b3:ac:9f:c9:c7:85:
+            30:84:c7:fa:24:c6:15:79:d3
+        generator: 5 (0x5)
+-----BEGIN DH PARAMETERS-----
+MIGHAoGBAJVra3zmAZngIrNNCFlZwqBX7PqecROiZwhQZG6t+efo5QTwUrgBxP4L
+GYwDHvcId59p8tVGPJnBBMew4CvKufvJlN83jyNa7ItfjxTjuIyvihZIgmAtXFjv
+qqSrOJAHTmTY9MvO7ZiK0THsv+2L2NSvs6yfyceFMITH+iTGFXnTAgEF
+-----END DH PARAMETERS-----
